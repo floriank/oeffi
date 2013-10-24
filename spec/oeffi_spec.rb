@@ -38,7 +38,7 @@ describe "Oeffi module" do
       result = Oeffi::autocomplete("Halle")
       result.should_not be_empty
       result.each do |res|
-        res.should be_a Oeffi::Station
+        res.should be_a Oeffi::Location
       end
     end
   end

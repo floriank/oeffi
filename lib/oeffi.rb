@@ -1,5 +1,5 @@
 require "oeffi/version"
-require "oeffi/stations"
+require "oeffi/queries"
 require "java"
 require "pry"
 
@@ -10,7 +10,7 @@ end
 module Oeffi
   include_package "de.schildbach.pte"
   include_package "de.schildbach.pte.dto"
-  include Stations
+  include Queries
 
   class << self
     attr_accessor :configuration
@@ -20,7 +20,12 @@ module Oeffi
     end
 
     def autocomplete(string="")
-      [Oeffi::Station.new]
+      query = Oeffi::AutocompleteQuery.new string
+      query.perform
+    end
+
+    def provider
+      Oeffi.configuration.provider
     end
   end
 
