@@ -27,4 +27,11 @@ describe "Oeffi module" do
       end
     }.to raise_error
   end
+
+  describe "autocomplete" do
+    it "should provider a method to autocomplete based on a given string" do
+      result = Oeffi::autocomplete("Leipzig")
+      result.should be_a Array
+    end
+  end
 end
