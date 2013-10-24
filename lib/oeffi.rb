@@ -1,4 +1,5 @@
 require "oeffi/version"
+require "oeffi/stations"
 require "java"
 require "pry"
 
@@ -9,12 +10,17 @@ end
 module Oeffi
   include_package "de.schildbach.pte"
   include_package "de.schildbach.pte.dto"
+  include Stations
 
   class << self
     attr_accessor :configuration
     def configure(&block)
       self.configuration ||= Configuration.new
       yield(configuration)
+    end
+
+    def autocomplete(string="")
+      [Oeffi::Station.new]
     end
   end
 
