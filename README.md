@@ -1,6 +1,6 @@
 # Oeffi
 
-The oeffi library as a gem for JRuby based on the public transport enabler library by Andreas Schildbach
+The oeffi library as a gem for JRuby based on the [public transport enabler](https://code.google.com/p/public-transport-enabler/) library by Andreas Schildbach.
 
 ## Installation
 
@@ -25,4 +25,4 @@ Or install it yourself as:
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
 
-(I highly recommend git flow.)
+(I highly recommend [git flow](https://github.com/nvie/gitflow).)
