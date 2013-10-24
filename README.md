@@ -1,6 +1,6 @@
 # Oeffi
 
-TODO: Write a gem description
+The oeffi library as a gem for JRuby based on the public transport enabler library by Andreas Schildbach
 
 ## Installation
 
@@ -16,9 +16,6 @@ Or install it yourself as:
 
     $ gem install oeffi
 
-## Usage
-
-TODO: Write usage instructions here
 
 ## Contributing
 
@@ -27,3 +24,5 @@ TODO: Write usage instructions here
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
+
+(I highly recommend git flow.)
