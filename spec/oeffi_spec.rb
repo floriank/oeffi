@@ -42,4 +42,27 @@ describe "Oeffi module" do
       end
     end
   end
+
+  describe "Trip finding" do
+    before :each do
+      Oeffi.configure do |oeffi|
+        oeffi.provider = :nasa
+      end
+    end
+    it "should provide a method for querying trips" do
+      stations = {
+        :from => {
+          :id => 10789,
+          :type => "STATION"
+        },
+        :to => {
+          :id => 11345,
+          :type => "STATION"
+        }
+      }
+
+      result = Oeffi::find_trip stations
+      result.should_not be_empty
+    end
+  end
 end
