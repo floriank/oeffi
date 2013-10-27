@@ -42,14 +42,4 @@ describe "Oeffi module" do
       end
     end
   end
-
-  describe "nearby station lookup" do
-    it "should provide a method to find stations near certain coordinates" do
-      result = Oeffi::nearby(:lat => 51.3167, :lon => 12.3333)
-      result.should_not be_empty
-      result.each do |res|
-        res.should be_a Oeffi::Location
-      end
-    end
-  end
 end

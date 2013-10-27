@@ -24,11 +24,6 @@ module Oeffi
       query.perform
     end
 
-    def nearby(opts)
-      query = Oeffi::NearbyQuery.new opts
-      query.perform
-    end
-
     def provider
       Oeffi.configuration.provider
     end
