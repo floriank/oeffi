@@ -1,6 +1,9 @@
 require "oeffi/locations"
+require "oeffi/trips"
+
 module Queries
   include Locations
+  include Trips
   class Query
     def perform(method, args)
       Oeffi.provider.send(method, *args)
@@ -46,7 +49,7 @@ module Queries
 
     def perform
       result = super :queryTrips, [fromLocation, viaLocation, toLocation, date, departure, count, products, walkspeed, accessibility, nil]
-      result.trips.to_a
+      Trips::TripList.new result.trips.to_a
     end
 
   private
