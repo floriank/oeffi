@@ -60,9 +60,49 @@ describe "Oeffi module" do
           :type => "STATION"
         }
       }
+      expect {
+        Oeffi::find_trips stations
+      }.not_to raise_error
 
-      result = Oeffi::find_trip stations
-      result.should_not be_empty
+    end
+
+    it "should handle string values for a departure date" do
+      stations = {
+        :from => {
+          :id => 10789,
+          :type => "STATION"
+        },
+        :to => {
+          :id => 11345,
+          :type => "STATION"
+        },
+        :date => "2013-12-25 18:00:00"
+      }
+
+      expect {
+        Oeffi::find_trips stations
+      }.not_to raise_error
+
+    end
+
+    it "should expose a switch for departure or arrival time" do
+      stations = {
+        :from => {
+          :id => 10789,
+          :type => "STATION"
+        },
+        :to => {
+          :id => 11345,
+          :type => "STATION"
+        },
+        :date => "2013-12-25 18:00:00",
+        :departure => false # date is now set for arrival
+      }
+
+      expect {
+        Oeffi::find_trips stations
+      }.not_to raise_error
+
     end
   end
 end

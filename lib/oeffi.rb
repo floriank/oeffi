@@ -20,8 +20,11 @@ module Oeffi
     end
 
     def autocomplete(string="")
-      query = Oeffi::AutocompleteQuery.new string
-      query.perform
+      Oeffi::AutocompleteQuery.new(string).perform
+    end
+
+    def find_trips(opts)
+      Oeffi::TripQuery.new(opts).perform
     end
 
     def provider
