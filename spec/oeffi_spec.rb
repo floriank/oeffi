@@ -92,17 +92,56 @@ describe "Oeffi module" do
           :type => "STATION"
         },
         :to => {
-          :id => 11345,
+          :id => 8012183,
           :type => "STATION"
         },
         :date => "2013-12-25 18:00:00",
-        :departure => false # date is now set for arrival
+        :departure => false
       }
 
       expect {
-        Oeffi::find_trips stations
+        result = Oeffi::find_trips stations
       }.not_to raise_error
+    end
 
+    it "should be able to handle addresses" do
+      stations = {
+        :from => {
+          :lat   => 51.3336467,
+          :lon   => 12.3739341,
+          :type  => "ADDRESS"
+        },
+        :to => {
+          :id => 8012183,
+          :type => "STATION"
+        },
+        :count => 10
+      }
+
+      result = Oeffi::find_trips stations
+
+      result.should_not be_nil
+    end
+
+    it "should be able to represent the result as an array of trips" do
+      stations = {
+        :from => {
+          :id => 10789,
+          :type => "STATION"
+        },
+        :via => {
+          :id   => 13000,
+          :type => "STATION"
+        },
+        :to => {
+          :id => 11345,
+          :type => "STATION"
+        }
+      }
+      result = Oeffi::find_trips(stations).as_json
+
+      result.should_not be_nil
+      result.should be_an Array
     end
   end
 end

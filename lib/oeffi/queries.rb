@@ -27,7 +27,7 @@ module Queries
   class TripQuery < Query
     include_package "de.schildbach.pte"
     include_package "de.schildbach.pte.dto"
-    attr_accessor :from, :to, :via, :count, :departure, :date
+    attr_accessor :from, :to, :via, :count, :departure, :date, :address
 
     def initialize(opts)
       defaults = {
@@ -49,7 +49,7 @@ module Queries
 
     def perform
       result = super :queryTrips, [fromLocation, viaLocation, toLocation, date, departure, count, products, walkspeed, accessibility, nil]
-      Trips::TripList.new result.trips.to_a
+      Trips::TripResult.new result.trips.to_a
     end
 
   private
@@ -86,11 +86,17 @@ module Queries
     def location(sym)
       values = self.send sym.to_s
       type   = LocationType::const_get values[:type].to_s
-      Location.new type, values[:id]
+      if values[:id].nil? # consider this an address
+        lat = (values[:lat] * 1000000).to_i
+        lon = (values[:lon] * 1000000).to_i
+        Location.new type, lat, lon
+      else
+        Location.new type, values[:id]
+      end
     end
   end
 
   def self.get_type(identifier)
-    Java::DeSchildbachPteDto::LocationType::const_get identifier.to_s
+    LocationType::const_get identifier.to_s
   end
 end
