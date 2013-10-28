@@ -25,8 +25,11 @@ module Queries
   end
 
   class TripQuery < Query
-    include_package "de.schildbach.pte"
-    include_package "de.schildbach.pte.dto"
+    java_import "de.schildbach.pte.NetworkProvider"
+    java_import "de.schildbach.pte.dto.Product"
+    java_import "de.schildbach.pte.dto.Location"
+    java_import "de.schildbach.pte.dto.LocationType"
+
     attr_accessor :from, :to, :via, :count, :departure, :date, :address
 
     def initialize(opts)
