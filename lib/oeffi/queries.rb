@@ -19,7 +19,7 @@ module Queries
     def perform
       result = super :autocompleteStations, [@string]
       result.to_a.map do |station|
-        Locations::Location.new station
+        Locations::Location.new(station).as_json
       end
     end
   end
