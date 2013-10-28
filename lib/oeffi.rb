@@ -1,15 +1,10 @@
+require "java"
+require "oeffi/jars"
 require "oeffi/version"
 require "oeffi/queries"
-require "java"
 require "pry"
 
-Dir["lib/vendor/*.jar"].each do |file|
-  require file
-end
-
 module Oeffi
-  include_package "de.schildbach.pte"
-  include_package "de.schildbach.pte.dto"
   include Queries
 
   class << self
@@ -48,11 +43,11 @@ module Oeffi
     def provider=(sym)
       klass = "#{sym.to_s.capitalize}Provider"
       begin
-        klass = Oeffi::const_get klass
+        java_import "de.schildbach.pte.#{klass}"
+        @provider = Oeffi::const_get(klass).new
       rescue Exception => e
         raise "Unknown Provider name: #{klass}"
       end
-      @provider = klass.new
     end
 
     def provider

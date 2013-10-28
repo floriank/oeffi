@@ -1,3 +1,5 @@
+java_import "de.schildbach.pte.dto.Location"
+
 module Locations
   class Location
     STATION = 0
@@ -6,7 +8,7 @@ module Locations
     ANY     = 3
 
     def initialize(javaStation)
-      @type = Location::const_get javaStation.type.to_s
+      @type = javaStation.type.to_s
       @id   = javaStation.id
       @name = javaStation.name
       @lat  = javaStation.lat.to_f / 1000000
