@@ -1,4 +1,5 @@
 require "spec_helper"
+require "pry"
 require "lib/oeffi"
 
 describe "Oeffi module" do
@@ -32,13 +33,8 @@ describe "Oeffi module" do
     it "should provide a method to autocomplete based on a given string" do
       result = Oeffi::autocomplete("Leipzig")
       result.should be_a Array
-    end
-
-    it "should provide a set of Stations for when autocompleting" do
-      result = Oeffi::autocomplete("Halle")
-      result.should_not be_empty
-      result.each do |res|
-        res.should be_a Oeffi::Location
+      result.each do |station|
+        station.should be_a Hash
       end
     end
   end
