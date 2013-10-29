@@ -13,7 +13,7 @@ module Locations
       @id   = javaStation.id
       @name = javaStation.name
       @lat  = javaStation.lat.to_f / 1000000
-      @lng  = javaStation.lon.to_f / 1000000
+      @lon  = javaStation.lon.to_f / 1000000
     end
 
     def as_json
