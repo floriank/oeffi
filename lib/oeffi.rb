@@ -2,7 +2,6 @@ require "java"
 require "oeffi/jars"
 require "oeffi/version"
 require "oeffi/queries"
-require "pry"
 
 module Oeffi
   include Queries
