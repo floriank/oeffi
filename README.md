@@ -2,6 +2,8 @@
 
 The oeffi library as a gem for JRuby based on the [public transport enabler](https://code.google.com/p/public-transport-enabler/) library by Andreas Schildbach.
 
+[![Build Status](https://travis-ci.org/floriank/oeffi.png)](https://travis-ci.org/floriank/oeffi)
+
 ## Installation
 
 Add this line to your application's Gemfile:

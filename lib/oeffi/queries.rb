@@ -40,7 +40,7 @@ module Queries
       }
       opts = defaults.merge opts
       opts.each do |k,v|
-        self.send "#{k}=", v
+        self.send "#{k}=", v if self.respond_to? "#{k}="
       end
 
       raise "no From Location given!" if @from.nil?
