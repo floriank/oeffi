@@ -1,0 +1,4 @@
+language: ruby
+rvm:
+  - jruby-head
+script: bundle exec rspec spec
