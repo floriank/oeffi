@@ -5,6 +5,7 @@ module Queries
   include Locations
   include Trips
   class Query
+    attr :lat, :lon
     def perform(method, args)
       Oeffi.provider.send(method, *args)
     end
@@ -12,14 +13,20 @@ module Queries
 
   class AutocompleteQuery < Query
     attr_accessor :string
-    def initialize(string)
+    def initialize(string, lat=nil, lon=nil)
       @string = string
+      @lat    = lat
+      @lon    = lon
     end
 
     def perform
       result = super :autocompleteStations, [@string]
       result.to_a.map do |station|
-        Locations::Location.new(station).as_json
+        location = Locations::Location.new(station)
+        unless @lat.nil? or @lon.nil?
+          location.distance_to!({lat: @lat, lon: @lon})
+        end
+        location.as_json
       end
     end
   end

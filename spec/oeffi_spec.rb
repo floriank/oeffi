@@ -37,6 +37,14 @@ describe "Oeffi module" do
         station.should be_a Hash
       end
     end
+
+    it "should be able to tell the distance to a station when autocompleting" do
+      result = Oeffi::autocomplete("Leipzig", {:lat => 51.3394580, :lon => 12.3745350})
+      result.should be_an Array
+      result.each do |station|
+        station[:distance_to].should_not be_nil
+      end
+    end
   end
 
   describe "Trip finding" do
