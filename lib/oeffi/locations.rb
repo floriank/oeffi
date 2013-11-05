@@ -1,6 +1,5 @@
 java_import "de.schildbach.pte.dto.Location"
 require "geokit"
-require "pry"
 
 module Locations
   class Location
