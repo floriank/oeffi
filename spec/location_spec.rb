@@ -11,4 +11,11 @@ describe Location do
 
     result[:id].should equal 13000
   end
+
+  it "should be able to tell the distance to a certain point" do
+    jLocation = Java::DeSchildbachPteDto::Location.new Java::DeSchildbachPteDto::LocationType::STATION, 51344352, 12380712
+    location = Locations::Location.new jLocation
+
+    location.distance_to({lat: 51.3394580, :lon => 12.3745350}).should be_within(100).of 500
+  end
 end
