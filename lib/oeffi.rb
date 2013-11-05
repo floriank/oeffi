@@ -13,8 +13,8 @@ module Oeffi
       yield(configuration)
     end
 
-    def autocomplete(string="")
-      Oeffi::AutocompleteQuery.new(string).perform
+    def autocomplete(string="", location={})
+      Oeffi::AutocompleteQuery.new(string, location[:lat], location[:lon]).perform
     end
 
     def find_trips(opts)
